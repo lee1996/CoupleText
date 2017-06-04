@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="card" style="width: 300px;">
             <div class="card-image" style="width: 300px;height: 200px;">
               <img src="img/user.jpg">
-              <span class="card-title" id="username">Username</span>
+              <span class="card-title" id="username"><%=user %></span>
             </div>
             <div class="card-content">
               <p> I love you not because I need you, I need you because I love you. <br>不是因为需要你所以爱你，是因为爱你所以需要你。

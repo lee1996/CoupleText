@@ -20,6 +20,7 @@
 		</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
 		<mapping resource="com/leet/user/User.hbm.xml" />
 		<mapping resource="com/leet/note/Note.hbm.xml" />
 		<mapping resource="com/leet/pair/Pair.hbm.xml" />

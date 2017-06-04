@@ -35,5 +35,8 @@
 	<bean id="user" class="com.leet.user.User"/>
 	<bean id="userImpl" class="com.leet.user.UserImpl"/>
 	
-	<bean id="addNoteAction" class="com.leet.action.AddNoteAction"/>
+	<bean id="addNoteAction" class="com.leet.action.AddNoteAction" scope="prototype"/>
+	<bean id="updateNoteAction" class="com.leet.action.UpdateAction" scope="prototype"/>
+	<bean id="deleteNoteAction" class="com.leet.action.DeleteAction" scope="prototype"/>
+	<bean id="searchNoteAction" class="com.leet.action.SearchAction" scope="prototype"/>
 </beans>

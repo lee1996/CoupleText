@@ -22,5 +22,21 @@
 		<action name="addNote" class="addNoteAction">
 			<result name="success">/person.jsp</result>
 		</action>
+		
+		<action name="update" class="updateNoteAction">
+			<result name="success">/person.jsp</result>
+		</action>
+		
+		<action name="delete" class="deleteNoteAction">
+			<result name="success">/person.jsp</result>
+		</action>
+		
+	
+		
+	</package>
+
+	  <package name="json" extends="json-default"  namespace="/" >
+		<action name="search" class="searchNoteAction" method="mySearch">
+		</action>
 	</package>
 </struts>    

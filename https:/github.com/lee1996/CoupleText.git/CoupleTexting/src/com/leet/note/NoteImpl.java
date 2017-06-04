@@ -26,15 +26,16 @@ public class NoteImpl implements INote{
 	public void updateNote(Note note) {
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
-		Note not=(Note) session.load(Note.class, note.getNoteId());
-		session.update(not);
+		Note not=(Note) session.get(Note.class, note.getNoteId());
+		not=note;
+		session.merge(not);
 		transaction.commit();
 		session.close();
 		
 	}
 
 	@Override
-	public void deleteNote(String note_id) {
+	public void deleteNote(int note_id) {
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
 		Note note=(Note) session.get(Note.class, note_id);
@@ -70,13 +71,33 @@ public class NoteImpl implements INote{
 		return result;
 	}
 
+//	@Override
+//	public int noteSize() {
+//		Session session=sessionFactory.openSession();
+//		String hql="from Note";
+//		Query query=session.createQuery(hql);
+//		List<Note> list=query.list();
+//		session.close();
+//		return list.size();
+//	}
+
 	@Override
-	public int noteSize() {
+	public Note queryViaId(int id) {
 		Session session=sessionFactory.openSession();
-		String hql="from Note";
+		Note note=(Note) session.get(Note.class, id);
+		session.close();
+		return note;
+	}
+
+	@Override
+	public List<String> queryNote(String title, String username) {
+		Session session=sessionFactory.openSession();
+		String hql="select title from Note where title like :title and user.username=:name";
 		Query query=session.createQuery(hql);
-		List<Note> list=query.list();
-		return list.size();
+		query.setString("title", "%"+title+"%");
+		query.setString("name", username);
+		List<String> result=query.list();
+		return result;
 	}
 
 }
