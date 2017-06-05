@@ -8,7 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <title>搜索</title>
-	<meta charset="utf-8">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -19,31 +18,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		$("#query").click(function(){
-    			var searchtitle=$("#search").val();
-    			alert(searchtitle);
-    			console.log(searchtitle);
-    			var arglist={"title":searchtitle};
-    			$.getJSON(
-					"search.action",
-					arglist,
-					function(data){
-						if(data.length==0){
-							confirm("无对应笔记记录!");
-						}else{
-							var content="";
-							var i=0;
-							for(;i<data.length;i++){
-								content+="<a class='collection-item' href='detail.jsp?title='"+data[i]+"'>"+data[i]+"</a>";
-								//content="<a href='#' class='collection-item'>nihao</a>";
+    	$("#query").click(function(){
+    				var searchtitle=encodeURIComponent(JSON.stringify($("#search").val()),"utf-8");
+	    			console.log(searchtitle);
+	    			var arglist={"title":searchtitle};
+	    			$.getJSON(
+						"search.action",
+						arglist,
+						function(data){
+							if(data.length==0){
+								confirm("无对应笔记记录!");
+							}else{
+								var content="";
+								var i=0;
+								for(;i<data.length;i++){
+									content+="<a class='collection-item' href='detail.jsp?title="+data[i]+"'>"+data[i]+"</a>";
+									//content="<a href='#' class='collection-item'>nihao</a>";
+								}
+								document.getElementById("collection").innerHTML=content;
+								$("#collection").css("visibility","visible");
 							}
-							document.getElementById("collection").innerHTML=content;
-							$("#collection").css("visibility","visible");
-						}
-					});
-    		});
+						});
+    	});	
     	});
-    	
     </script>
 </head>
 <body>
@@ -55,14 +52,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="nav-wrapper">
     
       <form method="post" action="search" onkeydown="if(event.keyCode==13){return false;}">
-      <div class="row">
-        <div class="input-field col s10">
+        <div class="input-field">
           <input id="search" type="search" required placeholder="输入你想查找的笔记名">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>  
         </div>
-       <input type="button" class="btn waves-effect waves-light col s2 center-align" id="query" value="Search"/>
-       </div>
       </form>
       <div  class="collection" id="collection" style="visibility: hidden;">
       	
@@ -71,6 +65,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
   </nav>
   </div>
+  <div class="col s2">
+  <input type="button" class="btn waves-effect waves-light" value="搜　索" style="height:63px;text-align:center;padding-top:20px;" id="query"/>
+  </div>
+  
  </div>
  
 </body>
