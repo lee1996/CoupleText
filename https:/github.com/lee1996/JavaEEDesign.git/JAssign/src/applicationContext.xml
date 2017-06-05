@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+	<!-- 用户方面 -->
+	
+	<bean id="userImpl" class="com.LoginAndRegist.UserImpl">
+	
+	</bean>
+	<bean id="loginAction" class="com.LoginAndRegist.LoginAction" scope="prototype"/>
+	<bean id="user" class="com.LoginAndRegist.User"/>
+	<bean id="registAction" class="com.LoginAndRegist.RegistAction" scope="prototype"/>
+	<bean id="updateAction" class="com.LoginAndRegist.UpdateAction" scope="prototype"/>
+	<bean id="searchAction" class="com.manage.SearchAction" scope="prototype"/>
+	<bean id="deleteAction" class="com.manage.DeleteAction" scope="prototype"/>
+	<bean id="updateProjectAction" class="com.manage.UpdateAction" scope="prototype"/>
+	
+	<!-- 项目方面 -->
+	<bean id="addAction" class="com.manage.AddAction" scope="prototype"/>
+	<!-- 科研单位 -->
+	<bean id="company" class="com.company.Company"/>
+	
+	
+	<bean id="companyImpl" class="com.company.CompanyImpl"/>
+	<!-- 合同 -->
+	<bean id="contract" class="com.contract.ProjectManage"/>
+	
+	
+	<bean id="contractImpl" class="com.contract.ContractImpl"/>
+	<!-- 项目内容 -->
+	<bean id="project" class="com.project.ProjectInfo"/>
+	
+	<bean id="projectImpl" class="com.project.ProjectImpl"/>
+	
+	
+	
+	
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			p:driverClass="com.mysql.jdbc.Driver"
+			p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/J2EE"
+			p:password="123456"
+			p:user="root"
+			/>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+		<property name="dataSource" ref="dataSource"></property>
+	  </bean>
+	 <bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		 
+	</bean>
+	 <!-- 
+	<tx:annotation-driven transaction-manager="transactionManager" />-->
+	
+	 
+	</beans>

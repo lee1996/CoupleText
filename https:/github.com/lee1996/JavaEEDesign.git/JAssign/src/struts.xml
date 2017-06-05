@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="javaee" extends="struts-default" namespace="/">
+		<action name="login" class="loginAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/login.jsp</result>
+			
+		</action>
+		
+		<action name="regist" class="registAction">
+			<result name="success">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/regist.jsp</result>
+		</action>
+		
+		<action name="update" class="updateAction">
+			<result name="success">/manage.jsp</result>
+			<result name="input">/personInfo.jsp</result>
+		</action>
+		
+		<action name="add" class="addAction">
+			<result name="success">/manage.jsp</result>
+			<result name="input">/add.jsp</result>
+		</action>
+		
+		<action name="del" class="deleteAction">
+			<result name="success">/manage.jsp</result>
+		</action>
+		
+		<action name="updateProject" class="updateProjectAction">
+			<result name="success">/manage.jsp</result>
+			<result name="input">/detail.jsp</result>
+		</action>
+		
+	</package>
+	
+	 <package name="json" extends="json-default">
+		<action name="search" class="searchAction" method="mySearch">
+		</action>
+		
+	</package>
+	
+</struts>    
