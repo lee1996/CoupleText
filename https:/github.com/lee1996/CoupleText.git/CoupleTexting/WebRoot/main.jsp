@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -19,15 +19,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript">
       function prom(){
         var name=prompt("请输入对方的用户名:","");
-        var pwd=prompt("请输入对方的密码:","");
         alert("用户名是:"+name+"密码是:"+pwd);
       }
     </script>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<link rel="Stylesheet" type="text/css" href="css/loginDialog.css" />	
+	<script type="text/javascript">
+	$(function ($) {
+		//弹出登录
+		$("#add").on('click', function () {
+			$("body").append("<div id='mask'></div>");
+			$("#mask").addClass("mask").fadeIn("slow");
+			$("#LoginBox").fadeIn("slow");
+		});
+		
+		$(".close_btn").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+			$("#LoginBox").fadeOut("fast");
+			$("#mask").css({ display: 'none' });
+		});
+		});
+		
+		</script>	
 </head>
-<body>
-<div>
+<body> 
+	<div id="LoginBox">
+        <div class="row">
+        	<div class="col s4"></div>
+            <div class="col s5 flow-text" style="padding-top:12px;color:#26a69a;">另一半用户名</div>
+            <a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">X</a>
+        </div>
+        <div class="row">
+        <div class="col s12 input-field center-align">
+        	<input type="text" name="user" id="ta" class="validate" required style="width:70%;"/>
+        	<label for_name="user">用户名</label>
+        </div>
+        </div>
+        <div class="row">
+        	<div class="col s12 center-align">
+        	<a type="button" href="#!" class="btn waves-effect waves-light center-align">确定</a>
+        	</div>
+        </div>
+       <s:fielderror name="existerror"></s:fielderror>
+    </div>
 	<ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!" onclick="prom()">添加另一半</a></li>
+    <li><a href="#!" id="add">添加另一半</a></li>
     <li class="divider"></li>
     <li><a href="lover.jsp">我的另一半</a></li>
  	 </ul>

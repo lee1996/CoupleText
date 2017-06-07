@@ -3,7 +3,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ page 
+	import ="java.net.URLDecoder" 
+	import= "java.net.URLEncoder"
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -21,6 +24,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		$(".carousel").carousel();
    		 });
     </script>
+    
+    <%
+    	Cookie[] cookies=request.getCookies();
+	  	String user=null;
+		for(Cookie cookie : cookies){
+			if(URLDecoder.decode(cookie.getName(), "UTF-8").equals("username")){
+				 user=URLDecoder.decode(cookie.getValue(), "UTF-8");
+				 break;
+			}
+		}
+		%>
 </head>
 <body>
 <nav>
@@ -30,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><a href="main.jsp"><i class="material-icons left">keyboard_return</i>返回</a></li>
       </ul>
       <ul class=" hide-on-med-and-down right">
-        <li><a href="#!" class="flow-text">username</a></li>
+        <li><a href="#!" class="flow-text"><%=user %></a></li>
       </ul>
     </div>
   </nav><br/>

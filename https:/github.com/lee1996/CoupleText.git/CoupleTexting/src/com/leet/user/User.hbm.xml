@@ -16,6 +16,9 @@
         <property name="gender" type="java.lang.String">
             <column name="gender" length="10" not-null="true" />
         </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="100" not-null="true" />
+        </property>
         <set name="notes" inverse="true" lazy="false">
             <key>
                 <column name="username" length="100" not-null="true" />

@@ -15,6 +15,7 @@ public abstract class AbstractUser implements java.io.Serializable {
 	private String username;
 	private String password;
 	private String gender;
+	private String email;
 	private Set notes = new HashSet(0);
 	private Set pairsForFemale = new HashSet(0);
 	private Set pairsForMale = new HashSet(0);
@@ -26,19 +27,21 @@ public abstract class AbstractUser implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public AbstractUser(String username, String password, String gender) {
+	public AbstractUser(String username, String password, String gender,String email) {
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
+		this.email=email;
 	}
 
 	/** full constructor */
-	public AbstractUser(String username, String password, String gender,
+	public AbstractUser(String username, String password, String gender,String email,
 			Set notes, Set pairsForFemale, Set pairsForMale) {
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
 		this.notes = notes;
+		this.email=email;
 		this.pairsForFemale = pairsForFemale;
 		this.pairsForMale = pairsForMale;
 	}
@@ -92,5 +95,14 @@ public abstract class AbstractUser implements java.io.Serializable {
 	public void setPairsForMale(Set pairsForMale) {
 		this.pairsForMale = pairsForMale;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 
 }

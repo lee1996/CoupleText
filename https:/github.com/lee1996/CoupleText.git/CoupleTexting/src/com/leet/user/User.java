@@ -14,14 +14,14 @@ public class User extends AbstractUser implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public User(String username, String password, String gender) {
-		super(username, password, gender);
+	public User(String username, String password, String gender,String email) {
+		super(username, password, gender,email);
 	}
 
 	/** full constructor */
-	public User(String username, String password, String gender, Set notes,
+	public User(String username, String password, String gender,String email, Set notes,
 			Set pairsForFemale, Set pairsForMale) {
-		super(username, password, gender, notes, pairsForFemale, pairsForMale);
+		super(username, password, gender,email, notes, pairsForFemale, pairsForMale);
 	}
 
 }
