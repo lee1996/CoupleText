@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	<!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
    
     <%
@@ -43,6 +44,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     		
      %>
+     <script type="text/javascript">
+     	$(document).ready(function(){
+     		$("#out").click(function(){
+     			window.parent.location.href="index.jsp";
+     		});
+     	});
+     </script>
 </head>
 <body>
 <div class="row" id="top">
@@ -76,7 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	</div>
  </div>
   <div class="fixed-action-btn  click-to-toggle">
-    <a class="btn-floating btn-large red tooltipped waves-effect waves-light" data-position="left" data-delay="50" data-tooltip="回到顶部" href="#top"><i class="material-icons large">publish</i></a>
+    <a class="btn-floating btn-large red waves-effect waves-light" >
+    <i class="material-icons large">mode_edit</i></a>
+    <ul>
+  		<li class="btn-floating tooltipped red" data-position="left" data-delay="50" data-tooltip="登出系统"><a id="out"><i class="material-icons">account_circle</i></a></li>
+  		
+  		<li class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="回到顶部"><a href="#top"><i class="material-icons">publish</i></a></li>
+  	</ul>
   </div>
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </body>

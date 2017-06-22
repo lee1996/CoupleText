@@ -46,9 +46,7 @@ public class SearchAction extends ActionSupport{
 		response.setCharacterEncoding("UTF-8");
 		System.out.println("json传过来的标题是"+title);
 		NoteImpl noteImpl=ctx.getBean(NoteImpl.class);
-		List<String> list=noteImpl.queryNote(title, user);
-		
-		
+		List<String> list=noteImpl.queryNote(title, user);		
 		JSONArray jsonArray=JSONArray.fromObject(list);
 		response.getWriter().write(jsonArray.toString());
 	}

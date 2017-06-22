@@ -51,6 +51,7 @@ public class LoginAction extends ActionSupport implements Action,ServletResponse
 		c=new Cookie(URLEncoder.encode("password", "UTF-8"),URLEncoder.encode(password, "UTF-8"));	 
 		c.setMaxAge(60*60);
 		response.addCookie(c);
+		
 		return SUCCESS;
 	}
 	

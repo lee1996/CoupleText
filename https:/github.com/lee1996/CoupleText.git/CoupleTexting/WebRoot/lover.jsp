@@ -6,6 +6,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ page 
 	import ="java.net.URLDecoder" 
 	import= "java.net.URLEncoder"
+	import="org.springframework.context.ApplicationContext"
+	 import="org.springframework.context.support.ClassPathXmlApplicationContext" 
+	 import="com.leet.pair.*"
+	 import="com.leet.user.*"
+	 import="com.leet.note.*"
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -34,6 +39,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 break;
 			}
 		}
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+		PairImpl pairImpl=ctx.getBean(PairImpl.class);
+		String lover=pairImpl.lovername(user);
+		UserImpl userImpl=ctx.getBean(UserImpl.class);
+		User users=userImpl.querySingleUser(lover);
+		Set<Note> notes=users.getNotes();
 		%>
 </head>
 <body>
@@ -44,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><a href="main.jsp"><i class="material-icons left">keyboard_return</i>返回</a></li>
       </ul>
       <ul class=" hide-on-med-and-down right">
-        <li><a href="#!" class="flow-text"><%=user %></a></li>
+        <li><a href="#!" class="flow-text"><%=lover %></a></li>
       </ul>
     </div>
   </nav><br/>
@@ -54,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div id="content" style="margin-top: -20px;">
  <div class="carousel" style="width: 100%;height: 600px;">
-    <a class="carousel-item" href="#one!" style="width: 400px;height: 300px;">
+   <!--   <a class="carousel-item" href="#one!" style="width: 400px;height: 300px;">
     <div class="card">
 		    <div class="card-image waves-effect waves-block waves-light">
 		      <img class="activator" src="img/office.jpg">
@@ -94,7 +105,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
 		      <p>Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.Here is some more information about this product that is only revealed once clicked on.</p>
    			 </div>
+  	</div></a>-->
+  	
+  	<%
+  		for(Note note : notes){%>
+  			 <a class="carousel-item" href="#one!" style="width: 400px;height: 300px;">
+    <div class="card">
+		    <div class="card-image waves-effect waves-block waves-light">
+		      <img class="activator" src="img/office.jpg">
+		    </div>
+		    <div class="card-content">
+		      <span class="card-title activator grey-text text-darken-4"><%out.print(note.getTitle()); %><i class="material-icons right">more_vert</i></span>
+		    </div>
+		    <div class="card-reveal">
+		      <span class="card-title grey-text text-darken-4"><%=note.getTitle() %><i class="material-icons right">close</i></span>
+		      <p><%=note.getContent() %></p></div>
   	</div></a>
+  		<%}
+  	 %>
  </div>
 
 </body>

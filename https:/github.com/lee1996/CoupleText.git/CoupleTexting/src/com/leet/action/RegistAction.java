@@ -68,6 +68,8 @@ public class RegistAction extends ActionSupport{
 			this.addFieldError("registError","用户已经存在！");
 		}else if(!mEmail.matches()){
 			this.addFieldError("registError", "邮箱格式错误！");
+		}else if(userImpl.isExistEmail(email)){
+			this.addFieldError("registError", "邮箱已注册！");
 		}
 	}
 }

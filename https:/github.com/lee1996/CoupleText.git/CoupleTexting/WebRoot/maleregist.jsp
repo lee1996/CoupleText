@@ -37,15 +37,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col s12 input-field">
 			<i class="material-icons prefix">lock_outline</i>
 				<input type="password" id="password"
-				name="password" class="validate" required minlength="6"/>
-				<label for="password">密码</label>
+				name="password" class="validate" data-length="12" required minlength="6"　maxlength="12"/>
+				<label for="password">密码(6-12位)</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12 input-field">
 			<i class="material-icons prefix">verified_user</i>
 				<input type="password" id="password"
-				name="pwdAgain" class="validate" required/>
+				name="pwdAgain" class="validate" data-length="12" required minlength="6"　maxlength="12"　/>
 				<label for="password">确认密码</label>
 			</div>
 		</div>

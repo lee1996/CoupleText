@@ -39,4 +39,6 @@
 	<bean id="updateNoteAction" class="com.leet.action.UpdateAction" scope="prototype"/>
 	<bean id="deleteNoteAction" class="com.leet.action.DeleteAction" scope="prototype"/>
 	<bean id="searchNoteAction" class="com.leet.action.SearchAction" scope="prototype"/>
+	<bean id="searchloverAction" class="com.leet.action.SearchLoverAction" scope="prototype"/>
+	<bean id="verifyAction" class="com.leet.action.VerifyAction" scope="prototype"/>
 </beans>

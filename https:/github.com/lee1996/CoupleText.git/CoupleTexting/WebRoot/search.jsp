@@ -59,14 +59,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </form>
       <div  class="collection" id="collection" style="visibility: hidden;">
-      	
-       
    	</div>
     </div>
   </nav>
   </div>
   <div class="col s2">
-  <input type="button" class="btn waves-effect waves-light" value="搜　索" style="height:63px;text-align:center;padding-top:20px;" id="query"/>
+  <button type="button" class="btn waves-effect waves-light"  style="height:63px;text-align:center;" id="query">搜　索</button>
   </div>
   
  </div>

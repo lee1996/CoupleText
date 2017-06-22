@@ -31,12 +31,16 @@
 			<result name="success">/person.jsp</result>
 		</action>
 		
+		<action name="verify" class="verifyAction">
+			<result name="success">/success.jsp</result>
+		</action>
 	
 		
 	</package>
 
 	  <package name="json" extends="json-default"  namespace="/" >
-		<action name="search" class="searchNoteAction" method="mySearch">
-		</action>
+		<action name="search" class="searchNoteAction" method="mySearch"/>
+		<action name="searchlover" class="searchloverAction" method="myCheck"/>
+	
 	</package>
 </struts>    

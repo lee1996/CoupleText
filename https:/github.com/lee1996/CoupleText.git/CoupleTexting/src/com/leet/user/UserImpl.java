@@ -6,6 +6,7 @@ package com.leet.user;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,9 +38,10 @@ public class UserImpl implements IUser{
 				return true;
 			}
 		}
+		session.close();
 		return false;
 	}
-	
+	@Override
 	public boolean isExistUser(String username,String gender) {
 		UserImpl userimpl=new UserImpl();
 		Session session=sessionFactroy.openSession();
@@ -50,6 +52,7 @@ public class UserImpl implements IUser{
 				return true;
 			}
 		}
+		session.close();
 		return false;
 	}
 	@Override
@@ -97,6 +100,36 @@ public class UserImpl implements IUser{
 		User user=(User) session.get(User.class, username);
 		session.close();
 		return user;
+	}
+
+	@Override
+	public String getEmail(String username, String gender) {
+		Session session=sessionFactroy.openSession();
+		String email=null;
+		UserImpl userimpl=new UserImpl();
+		List<User> users=userimpl.QueryUser();
+		for(User user : users){
+			if(user.getUsername().equals(username)&&user.getGender().equals(gender)){
+				email=user.getEmail();
+				session.close();
+				return email;
+			}
+		}
+		session.close();
+		return email;
+	}
+
+	@Override
+	public boolean isExistEmail(String email) {
+		Session session=sessionFactroy.openSession();
+		String hql="select username from User user where user.email=:email";
+		Query query=session.createQuery(hql);
+		query.setString("email", email);
+		List<String> list=query.list();
+		if(list.size()==0){
+			return false;
+		}
+		return true;
 	}
 
 }
